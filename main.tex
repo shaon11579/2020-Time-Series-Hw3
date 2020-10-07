@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{2020 Time Series Hw3}
+\author{Mahbubul Hasan}
+\date{October 2020}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercise 4.4}
+Show that when $\theta$ is replaced by $1/\theta$, the autocorrelation function for an \textbf{MA}$(1)$ process does not change.
+
+\subsection*{Solution}
+For MA(1) process, $\rho_k= \frac{-\theta}{1 + \theta^2}$, for $k=1$, and $0$ otherwise.Substituting $\frac{1}{\theta}$ for $\theta$,\\
+$\frac{-\frac{1}{\theta}}{1 + \frac{1}{\theta^2}} = \frac{-\frac{1}{\theta}}{\frac{\theta^2 + 1}{\theta^2}} = \frac{-\theta}{1 + \theta^2}$.\\
+Done.
+
+\section*{4.11}
+4.11 For the \textbf{ARMA}$(1,2)$ model $Y_t = 0.8Y_{t-1} + e_t + 0.7e_{t-1} + 0.6e{t-2}$, show that
+\subsection*{}
+\textbf{(a)} $\rho_k = 0.8\rho_{t-1}$ for $k > 2$.
+\subsubsection*{Solution}
+$\gamma_k = Cov(Y_{t-k}, Y_t) = E(Y_{t-k}, Y_t) = E(Y_{t-k}, 0.8Y_{t-1} + e_t + 0.7e_{t-1} + 0.6e_{t-2}$\\ $= 0.8E(Y_{t-k}, Y_{t-1}) + E(Y_{t-k}, e_t) + 0.7E(Y_{t-k},e_{t-1}) + 0.6E(Y_{t-k}, e_{t-2})$.  \textbf{(*)}\\
+\\
+Notice in \textbf{(*)}, for $k >2$, $Y_{t-k}$ is not dependent upon $e_t$, $e_{t-1}$, and $e_{t-2}$. Thus, we have\\
+$\gamma_k = 0.8E(Y_{t-k}, Y_{t-1}) = 0.8\gamma_{k-1}$\\
+$\implies \rho_k = 0.8\rho_{k-1}$, $k > 2$.
+\subsection*{}
+\textbf{(b)}$\rho_2 = 0.8\rho_1 + 0.6 \sigma_{e}^{2}/\gamma_0$.
+\subsubsection*{Solution}
+Now consider \textbf{(*)}, with $k = 2$:\\
+$\gamma_2 = 0.8E(Y_{t-2}, Y_{t-1}) + E(Y_{t-2}, e_t) + 0.7E(Y_{t-2},e_{t-1}) + 0.6E(Y_{t-2}, e_{t-2})$.
+\\Notice that $E(Y_{t-2}, e_t) = 0 = E(Y_{t-2},e_{t-1})$, and $E(Y_{t-2}, e_{t-2}) = \sigma_e^2$.\\
+Therefore, $\gamma_2 = 0.8E(Y_{t-2}, Y_{t-1}) + 0.6\sigma_e^2 = 0.8\gamma_1 +0.6\sigma_e^2$.\\
+Divide this by $\gamma_0$ to get $\rho_2$,\\
+$\rho_2 = \gamma_2/\gamma_0 = \frac{0.8\gamma_1 +0.6\sigma_e^2}{\gamma_0}$\\
+$\implies \rho_2 = 0.8\rho_1 + 0.6\sigma_e^2 / \gamma_0$.
+
+\section*{4.23}
+Suppose that $\{Y_t\}$ is an \textbf{AR}$(1)$ process with $\rho_1 = \phi$. Define the sequence $\{b_t\}$ as $b_t = Y_t - \phi Y_{t + 1}$.
+
+\subsection*{}
+\textbf{(a)} Show that $Cov(b_t,b_{t - k}) = 0$ for all $t$ and $k$.
+
+\subsubsection*{Solution}
+
+Recall that for \textbf{AR}(1), $\gamma_k = \phi\gamma_{k-1}$. With $\rho_1 = \phi$, we can without loss of generality assume $Var(Y_t) = 1$.\\
+\\
+So, $Cov(b_t, b_{t-k}) = Cov(Y_t - \phi Y_{t+}, Y_{t-k} + \phi Y_{t-k+1})\\ = Cov(Y_t, Y_{t-k}) - \phi Cov(Y_t, Y_{t-k+1}) - \phi Cov(Y_{t+1}, Y_{t-k}) + \phi^2 Cov(Y_{t+1}, Y_{t-k+1})\\ = \phi^k - \phi\phi^{k-1} - \phi\phi^{k+1} + \phi^2\phi^k\\ = \phi^k - \phi^k - \phi^{k+2} + \phi^{k+2} = 0$.
+
+$\therefore Cov(b_t,b_{t - k}) = 0$, for all $t$ and $k$.
+
+\subsection*{}
+\textbf{(b)} Show that $Cov(b_t,Y_{t+k}) = 0$ for all $t$ and $k > 0$.
+
+\subsubsection*{Solution}
+$Cov(b_t, Y_{t+k}) = Cov(Y_t - \phi Y_{t+1}, Y_{t+k}) =  Cov(Y_t, Y_{t+k}) - \phi Cov(Y_{t+1}, Y_{t+k})$. \\Recall that for $k > 0$, $\gamma_k = \phi\gamma_{k-1}$. \\So, $Cov(Y_t, Y_{t+k}) - \phi Cov(Y_t+1, Y_t+k)\\ = \phi^k - \phi\phi^{k-1}\\ = \phi^{k} - \phi^{k} = 0$.
+
+$\therefore Cov(b_t,Y_{t+k}) = 0$ for all $t$ and $k > 0$.
+\end{document}
+
+
